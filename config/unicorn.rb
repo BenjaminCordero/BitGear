@@ -12,7 +12,7 @@ before_fork do |server, worker|
 		ActiveRecord::Base.connection.disconnect!
 end
 
-after fork do |server, worker|
+after_fork do |server, worker|
 	Signal.trap 'TERM' do
 		puts 'Unicorn worker intercepting TERM and doing nothin. Wait for master to send QUIT'
 	end
